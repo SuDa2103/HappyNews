@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :links, dependent: :destroy
+  has_many :votes
 
   def owns_link?(link)
     self == link.user
@@ -12,5 +13,17 @@ class User < ApplicationRecord
 
   def owns_comment?(comment)
     self == comment.user
+  end
+
+  def upvote(link)
+    votes.create(upvote: 1, link: link)
+  end
+
+  def upvoted?(link)
+    votes.exists?(upvote: 1, link: link)
+  end
+
+  def remove_vote(link)
+    votes.find_by(link: link).destroy
   end
 end

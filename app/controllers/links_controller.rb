@@ -1,7 +1,11 @@
 class LinksController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
   def index
-    @links = Link.all
+    @links = Link.hottest
+  end
+
+  def newest
+    @links = Link.newest
   end
 
   def show
@@ -52,6 +56,17 @@ class LinksController < ApplicationController
     else
       redirect_to root_path, notice: 'Not authorized to delete this link'
     end
+  end
+
+  def upvote
+    link = Link.find_by(id: params[:id])
+    if current_user.upvoted?(link)
+      current_user.remove_vote(link)
+    else
+      current_user.upvote(link)
+    end
+    link.calc_hot_score
+    redirect_to root_path
   end
 
   def link_params
