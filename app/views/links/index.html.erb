@@ -1,0 +1,12 @@
+<div class="container">
+  <h1>Happy News</h1>
+
+<% @links.each do |link| %>
+  <h2><%= link.title %></h2>
+  <p><%= link.url %></p>
+  <%= link_to "Go to Discussion", link_path(link)  %>
+<% end %>
+
+<%= link_to "Start New Discussion", new_link_path  %>
+</div>
+

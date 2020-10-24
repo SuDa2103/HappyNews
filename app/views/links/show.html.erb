@@ -1,0 +1,10 @@
+
+  <h1><%= @link.title %></h1>
+
+  <p><%= @link.url %></p>
+
+   <div class="row m-3 justify-content-center">
+      <%= link_to 'Delete Link', link_path(@link), method: :delete, class: '' %>
+    </div>
+
+<%= link_to "Back to Homepage", root_path  %>
