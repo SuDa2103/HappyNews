@@ -1,24 +1,29 @@
 <div class="container">
-  <h1>Happy News</h1>
+  <div class="text-center">
+      <h1>Happy News</h1>
+  </div>
   <br>
-<% @links.each do |link| %>
-    <% if link.url? %>
-      <h3><a href="<%= link.url %>"> <%= link.title %></a></h3>
-    <% else %>
-      <%= link_to link_path(link)  %>
-    <% end %>
-    <% if link.description? %>
-      <p><%= link.description %></p>
-    <% end %>
-    <% if link.user = current_user %>
+<section class="all-links">
+  <% @links.each do |link|  %>
+    <div class="link">
+      <div class="title">
+        <%= link_to link.title, (link.url? ? link.url : link) %>
+
+        <% if link.url? %>
+          <span>
+            ( <%= link.url %> )
+          </span>
+        <% end %>
+      </div>
+
+      <div class="metadata">
+        <span class="time-created">
+          <%= time_ago_in_words(link.created_at) %> ago
+        </span>
+      </div>
+
+    </div>
     <br>
-    <%= link_to 'Delete Link', link_path(link), method: :delete, class: '' %>
-    <% end %>
-    <br>
-<% end %>
-<br>
-<br>
-<br>
-<%= link_to "Start New Discussion", new_link_path  %>
-</div>
+  <% end %>
+</section>
 
