@@ -1,12 +1,24 @@
 <div class="container">
   <h1>Happy News</h1>
-
+  <br>
 <% @links.each do |link| %>
-  <h2><%= link.title %></h2>
-  <p><%= link.url %></p>
-  <%= link_to "Go to Discussion", link_path(link)  %>
+    <% if link.url? %>
+      <h3><a href="<%= link.url %>"> <%= link.title %></a></h3>
+    <% else %>
+      <%= link_to link_path(link)  %>
+    <% end %>
+    <% if link.description? %>
+      <p><%= link.description %></p>
+    <% end %>
+    <% if link.user = current_user %>
+    <br>
+    <%= link_to 'Delete Link', link_path(link), method: :delete, class: '' %>
+    <% end %>
+    <br>
 <% end %>
-
+<br>
+<br>
+<br>
 <%= link_to "Start New Discussion", new_link_path  %>
 </div>
 
