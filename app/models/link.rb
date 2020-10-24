@@ -8,4 +8,10 @@ class Link < ApplicationRecord
   validates :url,
             format: { with: %r{\Ahttps?://} },
             allow_blank: true
+
+  has_many :comments
+
+  def comment_count
+    comments.length
+  end
 end

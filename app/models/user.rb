@@ -5,4 +5,12 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :links, dependent: :destroy
+
+  def owns_link?(link)
+    self == link.user
+  end
+
+  def owns_comment?(comment)
+    self == comment.user
+  end
 end

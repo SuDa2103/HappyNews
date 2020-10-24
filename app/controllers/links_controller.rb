@@ -6,6 +6,7 @@ class LinksController < ApplicationController
 
   def show
     @link = Link.find(params[:id])
+    @comments = @link.comments
   end
 
   def new
@@ -25,6 +26,12 @@ class LinksController < ApplicationController
 
   def edit
     @link = Link.find(params[:id])
+
+      if current_user.owns_link?(@link)
+        @link
+      else
+        redirect_to root_path, notice: 'Not authorized to edit this link'
+      end
   end
 
   def update
@@ -39,9 +46,12 @@ class LinksController < ApplicationController
   end
 
   def destroy
-    @link = Link.find(params[:id])
-    @link.destroy
-    redirect_to root_path
+    if current_user.owns_link?(link)
+      link.destroy
+      redirect_to root_path, notice: 'Link successfully deleted'
+    else
+      redirect_to root_path, notice: 'Not authorized to delete this link'
+    end
   end
 
   def link_params
