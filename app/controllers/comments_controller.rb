@@ -2,7 +2,7 @@ class CommentsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
   before_action :set_variables, only: [:edit, :update, :destroy]
   def index
-    @comment = Comment.all
+    @comments = Comment.all
   end
 
   def create

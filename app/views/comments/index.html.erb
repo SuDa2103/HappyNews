@@ -10,7 +10,7 @@
         <%= time_ago_in_words(comment.created_at) %> ago
       </span>
 
-      <% if logged_in? && current_user.owns_comment?(comment) %>
+      <% if user_signed_in? && current_user.owns_comment?(comment) %>
       <span class="edit-comment">
         <%= link_to 'edit',  edit_link_comment_path(comment.link, comment) %>
       </span>
