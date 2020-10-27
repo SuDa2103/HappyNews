@@ -8,6 +8,16 @@ class LinksController < ApplicationController
     @links = Link.newest
   end
 
+  def myposts
+    @links = []
+    @all_links = Link.all
+    @all_links.each do |link|
+      if link.user == current_user
+        @links.push(link)
+      end
+    end
+  end
+
   def show
     @link = Link.find(params[:id])
     @comments = @link.comments

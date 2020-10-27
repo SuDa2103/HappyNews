@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'links#index'
   get '/newest' => 'links#newest'
+  get '/myposts' => 'links#myposts'
   resources :links do
     resources :comments, only: [:create, :edit, :update, :destroy]
     post :upvote, on: :member
