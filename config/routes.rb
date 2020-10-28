@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root to: 'links#index'
   get '/newest' => 'links#newest'
   get '/myposts' => 'links#myposts'
+  get '/upvoted' => 'links#upvoted'
   resources :links do
     resources :comments, only: [:create, :edit, :update, :destroy]
     post :upvote, on: :member

@@ -18,6 +18,16 @@ class LinksController < ApplicationController
     end
   end
 
+  def upvoted
+    @votes = Vote.where(user_id: current_user.id)
+    @links = []
+    @votes.each do |vote|
+      id = vote.link_id
+      link = Link.find(id)
+      @links.push(link)
+    end
+  end
+
   def show
     @link = Link.find(params[:id])
     @comments = @link.comments
