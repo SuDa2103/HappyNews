@@ -6,8 +6,9 @@
     <div class="link">
      <div class="link-top"> 
       <%= link_to upvote_link_path(link), method: :post  do %>
-        <%= image_tag "logo.png", class: "upvote-img"%>
+        <i class="fas fa-arrow-up"></i> 
       <% end %>
+      <br>
       <div class="title">
         <%= link_to link.title, (link.url? ? link.url : link) %>
         <% if link.url? %>
