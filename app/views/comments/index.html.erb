@@ -1,6 +1,7 @@
-<section class="sitewide-comments">
+<div class="container">
+  <section class="sitewide-comments">
   <% @comments.each do |comment| %>
-  <div class="comment">
+  <div class="link">
     <p class="comment-owner">
       <strong>
         <%= comment.user.username %>
@@ -27,3 +28,5 @@
   </div>
   <% end %>
 </section>
+
+</div>
