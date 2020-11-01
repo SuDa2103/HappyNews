@@ -1,13 +1,20 @@
 <div class="container">
   <br>
-  <p>These are your saved posts, for those times when you need to revisit!</p>
+  <p>Positivity and negativity are both contagious. Below are some links, provided by our community, which will hopefully brighten up your day, and spur you on to spread some good vibes! </p>
 <section class="all-links">
   <% @links.each do |link|  %>
     <div class="link">
-     <div class="link-top"> 
+     <div class="link-top">
       <%= link_to upvote_link_path(link), method: :post  do %>
-        <%= image_tag "logo.png", class: "upvote-img"%>
+        <i class="fas fa-arrow-up
+          <% if current_user.present? %>
+            <% if current_user.upvoted?(link)%>
+            <%= "active" %>
+            <% end %>
+          <% end %>">
+        </i>
       <% end %>
+      <br>
       <div class="title">
         <%= link_to link.title, (link.url? ? link.url : link) %>
         <% if link.url? %>
@@ -35,17 +42,11 @@
               <%= link_to "delete", link, method: :delete, data: { confirm: "Are you sure?" } %>
             </span>
           <% end %>
-
-          
-            <span class="upvote-link">
-               <%= link_to "(#{link.upvotes})", upvote_link_path(link), method: :post %>
-            </span>
-          
-
         </span>
       </div>
 
     </div>
   <% end %>
 </section>
+
 

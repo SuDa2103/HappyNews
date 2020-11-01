@@ -4,9 +4,15 @@
 <section class="all-links">
   <% @links.each do |link|  %>
     <div class="link">
-     <div class="link-top"> 
-      <%= link_to upvote_link_path(link), method: :post  do %>
-        <%= image_tag "logo.png", class: "upvote-img"%>
+     <div class="link-top">
+       <%= link_to upvote_link_path(link), method: :post  do %>
+        <i class="fas fa-arrow-up
+          <% if current_user.present? %>
+            <% if current_user.upvoted?(link)%>
+            <%= "active" %>
+            <% end %>
+          <% end %>">
+        </i>
       <% end %>
       <div class="title">
         <%= link_to link.title, (link.url? ? link.url : link) %>
@@ -36,11 +42,11 @@
             </span>
           <% end %>
 
-          
+
             <span class="upvote-link">
                <%= link_to "(#{link.upvotes})", upvote_link_path(link), method: :post %>
             </span>
-          
+
 
         </span>
       </div>
