@@ -37,7 +37,7 @@
               <%= link_to pluralize(link.comment_count, 'comment'), link %>
           </span>
 
-          <% if user_signed_in? && current_user.owns_link?(link) %>
+          <% if user_signed_in? && (current_user.owns_link?(link) | current_user.admin == true) %>
             <span class="edit-link">
               <%= link_to "edit", edit_link_path(link) %>
             </span>
