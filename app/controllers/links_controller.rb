@@ -1,7 +1,7 @@
 class LinksController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show, :newest]
   def index
-    @links = Link.hottest
+    @pagy, @links = pagy(Link.hottest, page: params[:page], items: 30)
   end
 
   def newest
