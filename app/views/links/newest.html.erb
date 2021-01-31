@@ -21,8 +21,9 @@
         <%= link_to link.title, (link.url? ? link.url : link) %>
 
         <% if link.url? %>
+         <% url = Domainatrix.parse(link.url) %>
           <span>
-            ( <%= link.url %> )
+            (<%= url.domain %>.<%= url.public_suffix%>)
           </span>
         <% end %>
       </div>
