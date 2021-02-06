@@ -2,7 +2,9 @@
 
 A site where users post links to uplifiting and inspirational links and news!
 
-ToDo: admin rights for comments
+ToDo: 
+<br>
+admin rights for comments
 <br>
 Links at the top of comment threads
 
