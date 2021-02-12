@@ -6,5 +6,6 @@ ToDo:
 <br>
 * admin rights for comments
 * Links at the top of comment threads
+* Cloudinary for images?
 
 https://www.happinews.co/
