@@ -50,3 +50,5 @@ class CommentsController < ApplicationController
     @comment = @link.comments.find_by(id: params[:id])
   end
 end
+
+#  This comment dont mean shit
